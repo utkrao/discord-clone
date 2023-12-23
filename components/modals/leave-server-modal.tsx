@@ -12,7 +12,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
 import { useModal } from "@/hooks/use-modal-store";
 import { Button } from "@/components/ui/button";
 
@@ -25,16 +24,16 @@ export const LeaveServerModal = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const leaveServer = async () => {
+  const onClick = async () => {
     try {
       setIsLoading(true);
 
       await axios.patch(`/api/servers/${server?.id}/leave`);
-      
+
       onClose();
       router.refresh();
       router.push("/");
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
@@ -63,8 +62,8 @@ export const LeaveServerModal = () => {
             </Button>
             <Button
               disabled={isLoading}
-              onClick={leaveServer}
               variant="primary"
+              onClick={onClick}
             >
               Confirm
             </Button>
@@ -72,5 +71,5 @@ export const LeaveServerModal = () => {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

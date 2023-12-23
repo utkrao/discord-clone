@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { NavigationSidebar } from "@/components/navigation/navigation-sidebar";
-import { ServerSideBar } from "./server/server-sidebar";
+import { ServerSidebar } from "@/components/server/server-sidebar";
 
 export const MobileToggle = ({
   serverId
@@ -25,7 +25,7 @@ export const MobileToggle = ({
         <div className="w-[72px]">
           <NavigationSidebar />
         </div>
-        <ServerSideBar serverId={serverId} />
+        <ServerSidebar serverId={serverId} />
       </SheetContent>
     </Sheet>
   )
