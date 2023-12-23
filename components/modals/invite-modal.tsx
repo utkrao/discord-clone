@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { Check, Copy, RefreshCcw } from "lucide-react";
+import { Check, Copy, RefreshCw } from "lucide-react";
 import { useState } from "react";
 
 import {
@@ -10,9 +10,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
-import { useModal } from "@/hooks/use-modal-store";
 import { Label } from "@/components/ui/label";
+import { useModal } from "@/hooks/use-modal-store";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useOrigin } from "@/hooks/use-origin";
@@ -60,7 +59,11 @@ export const InviteModal = () => {
           </DialogTitle>
         </DialogHeader>
         <div className="p-6">
-          <Label className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">Server Invite Link</Label>
+          <Label
+            className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70"
+          >
+            Server invite link
+          </Label>
           <div className="flex items-center mt-2 gap-x-2">
             <Input
               disabled={isLoading}
@@ -68,9 +71,11 @@ export const InviteModal = () => {
               value={inviteUrl}
             />
             <Button disabled={isLoading} onClick={onCopy} size="icon">
-              {copied ? <Check className="w-5 h-4" /> : <Copy className="w-5 h-4" />}
+              {copied 
+                ? <Check className="w-4 h-4" /> 
+                : <Copy className="w-4 h-4" />
+              }
             </Button>
-
           </div>
           <Button
             onClick={onNew}
@@ -80,10 +85,10 @@ export const InviteModal = () => {
             className="text-xs text-zinc-500 mt-4"
           >
             Generate a new link
-            <RefreshCcw className="w-4 h-4 ml-2" />
+            <RefreshCw className="w-4 h-4 ml-2" />
           </Button>
         </div>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

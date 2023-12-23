@@ -12,7 +12,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
 import { useModal } from "@/hooks/use-modal-store";
 import { Button } from "@/components/ui/button";
 
@@ -25,16 +24,16 @@ export const DeleteServerModal = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const leaveServer = async () => {
+  const onClick = async () => {
     try {
       setIsLoading(true);
 
       await axios.delete(`/api/servers/${server?.id}`);
-      
+
       onClose();
       router.refresh();
       router.push("/");
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
@@ -50,7 +49,7 @@ export const DeleteServerModal = () => {
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
             Are you sure you want to do this? <br />
-           <span className="font-semibold text-indigo-500">{server?.name}</span> will be permanently deleted.
+            <span className="text-indigo-500 font-semibold">{server?.name}</span> will be permanently deleted.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="bg-gray-100 px-6 py-4">
@@ -64,8 +63,8 @@ export const DeleteServerModal = () => {
             </Button>
             <Button
               disabled={isLoading}
-              onClick={leaveServer}
               variant="primary"
+              onClick={onClick}
             >
               Confirm
             </Button>
@@ -73,5 +72,5 @@ export const DeleteServerModal = () => {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}
