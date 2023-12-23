@@ -6,6 +6,7 @@ import { Member, Message, Profile } from "@prisma/client";
 import { Loader2, ServerCrash } from "lucide-react";
 
 import { useChatQuery } from "@/hooks/use-chat-query";
+import { useChatSocket } from "@/hooks/use-chat-socket";
 
 import { ChatWelcome } from "./chat-welcome";
 import { ChatItem } from "./chat-item";
@@ -60,6 +61,7 @@ export const ChatMessages = ({
     paramKey,
     paramValue,
   });
+  useChatSocket({ queryKey, addKey, updateKey });
 
   if (status === "loading") {
     return (
@@ -111,18 +113,18 @@ export const ChatMessages = ({
           <Fragment key={i}>
             {group.items.map((message: MessageWithMemberWithProfile) => (
               <ChatItem
-              key={message.id}
-              id={message.id}
-              currentMember={member}
-              member={message.member}
-              content={message.content}
-              fileUrl={message.fileUrl}
-              deleted={message.deleted}
-              timestamp={format(new Date(message.createdAt), DATE_FORMAT)}
-              isUpdated={message.updatedAt !== message.createdAt}
-              socketUrl={socketUrl}
-              socketQuery={socketQuery}
-            />
+                key={message.id}
+                id={message.id}
+                currentMember={member}
+                member={message.member}
+                content={message.content}
+                fileUrl={message.fileUrl}
+                deleted={message.deleted}
+                timestamp={format(new Date(message.createdAt), DATE_FORMAT)}
+                isUpdated={message.updatedAt !== message.createdAt}
+                socketUrl={socketUrl}
+                socketQuery={socketQuery}
+              />
             ))}
           </Fragment>
         ))}
